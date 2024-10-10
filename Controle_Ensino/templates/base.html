@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default('Controle de Ensino') }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Controle de Ensino</h1>
+    </div>
+    <div class="content">
+        {% block content %}
+        <!-- Conteúdo das páginas filhas -->
+        {% endblock %}
+    </div>
+</body>
+</html>

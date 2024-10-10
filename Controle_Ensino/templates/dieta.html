@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ dieta.nome_dieta }}</h2>
+<p>foco em: {{ dieta.calorias }}</p>
+
+<h3>Plano de ensino</h3>
+<form method="POST">
+    <ul>
+        {% for item in dieta.cardapio %}
+        <li>
+            <input type="text" name="cardapio" value="{{ item }}">
+        </li>
+        {% endfor %}
+    </ul>
+    <button type="submit">Salvar plano de ensino</button>
+</form>
+
+<!-- Formulário para deletar dieta com confirmação -->
+<form method="POST" action="{{ url_for('deletar_dieta', dieta_id=dieta_id) }}" onsubmit="return confirmarDelecao()" style="margin-top: 20px;">
+    <button type="submit" style="background-color: red; color: white;">Deletar plano de ensino</button>
+</form>
+
+<a href="{{ url_for('dashboard') }}">Voltar ao Dashboard</a>
+
+<!-- Script para confirmação de exclusão -->
+<script>
+    function confirmarDelecao() {
+        return confirm("Tem certeza que deseja deletar esta dieta?");
+    }
+</script>
+{% endblock %}

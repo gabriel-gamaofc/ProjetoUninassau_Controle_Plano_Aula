@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Meus planos</h2>
+
+{% if is_admin %}
+    <a href="{{ url_for('listar_usuarios') }}" class="admin-btn">Listar Usuários</a>
+{% endif %}
+
+<button id="add-dieta-btn">Adicionar plano de aula</button>
+
+<!-- Formulário para adicionar dieta, escondido por padrão -->
+<div id="add-dieta-form" style="display: none;">
+    <form method="POST">
+        <input type="text" name="nome_dieta" placeholder="Nome do Plano de aula" required>
+        <input type="text" name="calorias" placeholder="Diga qual vai ser o foco" required>
+
+        <h3>Planos de ensino</h3>
+        <input type="text" name="cardapio" placeholder="Adicionar contéudo" required>
+        <input type="text" name="cardapio" placeholder="Adicionar contéudol">
+        <input type="text" name="cardapio" placeholder="Adicionar contéudo">
+
+        <button type="submit">Adicionar plano de ensino</button>
+    </form>
+</div>
+
+<ul>
+    {% for dieta in dietas %}
+    <li>
+        <a href="{{ url_for('exibir_dieta', dieta_id=loop.index0) }}">{{ dieta.nome_dieta }}</a> Foco em {{ dieta.calorias }} 
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('logout') }}">Sair</a>
+
+<script>
+    document.getElementById('add-dieta-btn').addEventListener('click', function() {
+        var form = document.getElementById('add-dieta-form');
+        if (form.style.display === 'none') {
+            form.style.display = 'block';
+        } else {
+            form.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

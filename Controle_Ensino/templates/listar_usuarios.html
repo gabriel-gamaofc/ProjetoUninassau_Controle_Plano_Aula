@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Lista de Usuários</h2>
+
+<ul>
+    {% for user in users %}
+    <li>
+        {{ user.username }}
+        <form method="POST" style="display: inline;">
+            <input type="hidden" name="username" value="{{ user.username }}">
+            <input type="text" name="new_username" placeholder="Novo Nome" required>
+            <button type="submit" name="action" value="update">Atualizar</button>
+        </form>
+        <form method="POST" style="display: inline;">
+            <input type="hidden" name="username" value="{{ user.username }}">
+            <button type="submit" name="action" value="delete">Deletar</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('dashboard') }}">Voltar ao Dashboard</a>
+{% endblock %}
